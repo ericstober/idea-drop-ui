@@ -71,19 +71,6 @@
         "ai"
       ],
       "createdAt": "2025-04-24T13:10:00.000Z"
-    },
-    {
-      "id": "4440",
-      "title": "Test Idea 1",
-      "summary": "Et dolor magna alias",
-      "description": "Anim aliquip tempore",
-      "tags": [
-        "test",
-        "web",
-        "webdev",
-        "coding"
-      ],
-      "createdAt": "2026-03-23T15:40:04.703Z"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
