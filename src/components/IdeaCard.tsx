@@ -27,7 +27,7 @@ const IdeaCard = ({ idea, button = true }: { idea: Idea; button?: boolean }) => 
         <p className='text-gray-700 mt-2'>{idea.summary}</p>
 
         {/* Link to idea detail page */}
-        <Link to='/ideas/$ideaId' params={{ ideaId: idea.id.toString() }} className={linkClasses}>
+        <Link to='/ideas/$ideaId' params={{ ideaId: idea._id.toString() }} className={linkClasses}>
           {/* Label changes depending on style */}
           {button ? "View Idea" : "Read More →"}
         </Link>

@@ -46,7 +46,7 @@ function IdeasPage() {
       <div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
         {ideas.map((idea) => (
           // Render each idea using IdeaCard
-          <IdeaCard key={idea.id} idea={idea} />
+          <IdeaCard key={idea._id} idea={idea} />
         ))}
       </div>
     </div>

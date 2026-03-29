@@ -1,6 +1,6 @@
 // Type declaration for Idea
 export type Idea = {
-  id: string;
+  _id: string;
   title: string;
   summary: string;
   description: string;
