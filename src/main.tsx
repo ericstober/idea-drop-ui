@@ -3,6 +3,7 @@ import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StrictMode } from "react";
+import { AuthProvider } from "./context/AuthContext";
 
 // Create a QueryClient instance for managing server state
 const queryClient = new QueryClient({
@@ -36,12 +37,14 @@ const rootElement = document.getElementById("app")!;
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
-    // Provide React Query client to the entire app
-    <QueryClientProvider client={queryClient}>
-      <StrictMode>
-        {/* Provide the router to enable routing throughout the app */}
-        <RouterProvider router={router} />
-      </StrictMode>
-    </QueryClientProvider>,
+    <AuthProvider>
+      {/* Provide React Query client to the entire app */}
+      <QueryClientProvider client={queryClient}>
+        <StrictMode>
+          {/* Provide the router to enable routing throughout the app */}
+          <RouterProvider router={router} />
+        </StrictMode>
+      </QueryClientProvider>
+    </AuthProvider>,
   );
 }
