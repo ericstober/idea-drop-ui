@@ -10,3 +10,13 @@ export const registerUser = async ({ name, email, password }: { name: string; em
     throw new Error(message);
   }
 };
+
+export const loginUser = async (credentials: { email: string; password: string }) => {
+  try {
+    const res = await api.post("/auth/login", credentials);
+    return res.data;
+  } catch (error: any) {
+    const message = error.response?.data?.message || "Failed to login";
+    throw new Error(message);
+  }
+};
