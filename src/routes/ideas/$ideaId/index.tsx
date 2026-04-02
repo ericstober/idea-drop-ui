@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { queryOptions, useSuspenseQuery, useMutation } from "@tanstack/react-query";
 import { fetchIdea, deleteIdea } from "@/api/ideas";
+import { useAuth } from "@/context/AuthContext";
 
 // Define reusable query options for a single idea
 const ideaQueryOptions = (ideaId: string) =>
@@ -30,6 +31,9 @@ function IdeaDetailsPage() {
 
   // Navigation hook for programmatic redirects
   const navigate = useNavigate();
+
+  // Get user
+  const { user } = useAuth();
 
   // Mutation for deleting the idea
   const { mutateAsync: deleteMutate, isPending } = useMutation({
@@ -65,24 +69,28 @@ function IdeaDetailsPage() {
       {/* Idea description */}
       <p className='mt-2'>{idea.description}</p>
 
-      {/* Edit Link */}
-      <Link
-        to='/ideas/$ideaId/edit'
-        params={{ ideaId }}
-        className='inline-block text-sm bg-yellow-500 hover:bg-yellow-600 text-white mt-4 mr-2 px-4 py-2 rounded transition'
-      >
-        Edit
-      </Link>
+      {user && user.id === idea.user && (
+        <>
+          {/* Edit Link */}
+          <Link
+            to='/ideas/$ideaId/edit'
+            params={{ ideaId }}
+            className='inline-block text-sm bg-yellow-500 hover:bg-yellow-600 text-white mt-4 mr-2 px-4 py-2 rounded transition'
+          >
+            Edit
+          </Link>
 
-      {/* Delete Button */}
-      <button
-        onClick={handleDelete}
-        disabled={isPending}
-        className='text-sm bg-red-600 text-white mt-4 px-4 py-2 rounded transition hover:bg-red-700 disabled:opacity-50'
-      >
-        {/* Show loading state */}
-        {isPending ? "Deleting..." : "Delete"}
-      </button>
+          {/* Delete Button */}
+          <button
+            onClick={handleDelete}
+            disabled={isPending}
+            className='text-sm bg-red-600 text-white mt-4 px-4 py-2 rounded transition hover:bg-red-700 disabled:opacity-50'
+          >
+            {/* Show loading state */}
+            {isPending ? "Deleting..." : "Delete"}
+          </button>
+        </>
+      )}
     </div>
   );
 }
