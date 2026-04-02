@@ -23,14 +23,15 @@ A modern React frontend for IdeaDrop - a platform to share, explore, and manage 
 
 ## Project Structure
 
+```
 src/
-api/ # API calls (ideas, auth)
-components/ # Reusable UI components
-context/ # Auth context (AuthProvider)
-routes/ # File-based routing (TanStack Router)
-lib/ # Utilities (axios instance, token handling)
-styles.css # Global styles
-main.tsx # App entry point
+  api/           # API calls (auth, ideas)
+  components/    # Reusable UI components
+  context/       # AuthProvider (global auth state)
+  routes/        # File-based routing (TanStack Router)
+  lib/           # Axios + token utilities
+  main.tsx       # App entry point
+```
 
 ## Authentication Flow
 
@@ -72,7 +73,7 @@ npm install
    Create a .env file:
 
 ```bash
-VITE_API_URL=http://localhost:5000/api
+VITE_API_URL=http://localhost:8000/api
 ```
 
 4. Run the development server
