@@ -5,16 +5,26 @@ import { logoutUser } from "@/api/auth";
 
 // Header component (site-wide navigation bar)
 const Header = () => {
+  // Set navigate for redirect after logout
   const navigate = useNavigate();
+
+  // Get auth state & setters from context
   const { user, setUser, setAccessToken } = useAuth();
 
+  // Handle logout
   const handleLogout = async () => {
     try {
+      // Call backend to clear session (cookies / tokens)
       await logoutUser();
+
+      // Clear auth state on frontend
       setAccessToken(null);
       setUser(null);
+
+      // Redirect to homepage after logout
       navigate({ to: "/" });
     } catch (error: any) {
+      // Log error if logout fails
       console.error("Logout failed: ", error);
     }
   };
@@ -37,7 +47,7 @@ const Header = () => {
 
         {/* Navigation links */}
         <nav className='flex items-center space-x-4'>
-          {/* Link to ideas list page */}
+          {/* Link to ideas list page - always visable */}
           <Link to='/ideas' className='text-gray-600 hover:text-gray-900 font-medium transition px-3 py-2 leading-none'>
             Ideas
           </Link>
@@ -56,6 +66,7 @@ const Header = () => {
         {/* Auth Buttons */}
         <div className='flex items-center space-x-2'>
           {!user ? (
+            // If not logged in
             <>
               {/* Login */}
               <Link
@@ -74,6 +85,7 @@ const Header = () => {
               </Link>
             </>
           ) : (
+            // If logged in
             <>
               <span className='hidden sm:block text-gray-700 font-medium px-2'>Welcome, {user.name}</span>
 
