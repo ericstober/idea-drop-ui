@@ -15,14 +15,15 @@ const config = defineConfig({
     tanstackRouter({ target: "react", autoCodeSplitting: true }),
     viteReact(),
   ],
-  server: {
-    proxy: {
-      "/api": {
-        target: "http://localhost:8000",
-        changeOrigin: true,
-      },
-    },
-  },
+  // This is for use with json-server
+  // server: {
+  //   proxy: {
+  //     "/api": {
+  //       target: "http://localhost:8000",
+  //       changeOrigin: true,
+  //     },
+  //   },
+  // },
 });
 
 export default config;
