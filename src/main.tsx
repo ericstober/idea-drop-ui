@@ -37,6 +37,7 @@ const rootElement = document.getElementById("app")!;
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
+    // AuthProvider makes authentication state available everywhere in the app via React Context
     <AuthProvider>
       {/* Provide React Query client to the entire app */}
       <QueryClientProvider client={queryClient}>
