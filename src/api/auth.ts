@@ -20,3 +20,12 @@ export const loginUser = async (credentials: { email: string; password: string }
     throw new Error(message);
   }
 };
+
+export const logoutUser = async () => {
+  try {
+    await api.post("/auth/logout");
+  } catch (error: any) {
+    const message = error.response?.data?.message || "Failed to logout";
+    throw new Error(message);
+  }
+};
